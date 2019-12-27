@@ -63,6 +63,13 @@ a.disable:hover {
     background-color: darkgray;
 }
 
+.success {
+    background: cornflowerblue;
+    color: #fff;
+    padding: 5px;
+    margin: 5px;
+}
+
 /**Password options**/
 
 .params {
