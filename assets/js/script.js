@@ -17,7 +17,7 @@ var specialCharacter = "!@#$%^&*()+}{_=][';/.,]";
 var number = "0123456789";
 
 // Listener for click event to start the password creation process
-generateEl.addEventListener("click", generatePassword);
+generateEl.addEventListener("click", displayPassword);
 
 // Function to get the password option that the user wants to use
 function passwordOptions() {
@@ -84,16 +84,21 @@ function getRandom(str) {
   return output;
 }
 
+// Function that will display the new password in the textarea by calling the generate password function and also enable the copy to clipboard button
+function displayPassword() {
+  var randomPassword = generatePassword();
+  displayEl.value = randomPassword;
+  copyEl.removeAttribute("disable");
+}
+
+// Listener for click event to copy new password to clipboard
+copyEl.addEventListener("click", copyToClipboard);
+
 //Function that will copy created password to the users clipboard
 function copyToClipboard() {
-  var textarea = document.createElement("textarea");
-  var password = displayEl.innerText;
-
-  textarea.value = password;
-  document.body.appendChild(textarea);
-  textarea.select();
+  var password = displayEl;
+  password.select();
   document.execCommand("copy");
-  textarea.remove();
 
   // Give the user a meesage that their password has been copied to the clipboard
   var copyMsg = document.createElement("div");
@@ -103,12 +108,12 @@ function copyToClipboard() {
 
   // Remove message after 1.5 seconds
   setTimeout(function() {
-    characterMsg.remove();
+    copyMsg.remove();
   }, 1500);
   return;
 }
 
-// Function that will take in the user chosen parameters and generate a new password
+// Function that will take in the user chosen parameters by calling the passwordOptions function and generate a random password
 function generatePassword() {
   var options = passwordOptions();
 

@@ -34,6 +34,7 @@ body {
     height: 100px;
     border: dashed 2px lightgray;
     resize: none;
+    text-align: center;
 }
 
 .buttons {
@@ -55,11 +56,12 @@ a.btn:hover {
     border: none;
 }
 
-a.disable:hover {
+a[disable]:hover {
     background-color: darkgray;
 }
 
-.disable {
+a[disable] {
+    cursor: default;
     background-color: darkgray;
 }
 
